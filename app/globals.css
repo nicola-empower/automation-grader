@@ -8,8 +8,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-open-sans);
+  --font-display: var(--font-montserrat);
+  
+  --color-brand-pink: #E91E63;
+  --color-brand-pink-dark: #C2185B;
+  --color-brand-purple: #8E24AA;
+  --color-brand-purple-light: #F3E5F5;
+  --color-brand-purple-dark: #6A1B9A;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,0 +1,129 @@
+/* Import Tailwind CSS base styles, components, and utilities */
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+/* Define custom fonts and colors based on your Brand Kit.
+  We're extending Tailwind's theme.
+*/
+@layer base {
+    body {
+        /* Set base fonts from your brand kit */
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .font-display {
+         /* Set display/header font from your brand kit */
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+/* Custom CSS utility classes */
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component styles for our forms and buttons.
+  This keeps the HTML cleaner.
+*/
+@layer components {
+    /* Form input styling */
+    .form-input {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+               focus:outline-none focus:ring-brand-purple focus:border-brand-purple;
+    }
+    
+    .form-label {
+        @apply block text-xs font-medium text-gray-600 mb-1;
+    }
+    
+    .form-title {
+        @apply text-xl font-bold text-gray-900 mb-2 font-display;
+    }
+    
+    .form-description {
+        @apply text-base text-gray-600 mb-6;
+    }
+
+    /* Main button styles */
+    .btn {
+        @apply px-6 py-3 rounded-md font-semibold shadow-md
+               transition duration-150 ease-in-out
+               focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+    
+    .btn-lg {
+        @apply px-8 py-3 text-lg;
+    }
+    
+    /* Primary Button (Your Empower Pink) */
+    .btn-primary {
+        @apply bg-brand-pink text-white 
+               hover:bg-brand-pink-dark focus:ring-brand-pink;
+    }
+    
+    /* Secondary Button (Your Deep Purple) */
+    .btn-secondary {
+        @apply bg-brand-purple-light text-brand-purple 
+               hover:bg-brand-purple-dark hover:text-white focus:ring-brand-purple;
+    }
+    
+    /* Task row styling */
+    .task-row {
+        @apply p-4 border border-gray-200 rounded-lg bg-gray-50;
+    }
+
+    /* Remove button styling */
+    .remove-task-btn {
+        @apply w-8 h-8 flex items-center justify-center bg-gray-200 text-gray-600
+               rounded-full font-bold text-lg leading-none
+               hover:bg-red-500 hover:text-white transition-colors;
+    }
+    
+    /* Result card styling */
+    .result-card {
+        @apply bg-white p-4 rounded-lg shadow border border-gray-100;
+    }
+    
+    .result-label {
+        @apply text-sm font-semibold text-gray-500 uppercase tracking-wide;
+    }
+    
+    .result-value {
+        @apply text-4xl font-bold my-1;
+    }
+    
+    .result-unit {
+        @apply text-sm text-gray-500;
+    }
+}
+
+/* This is where we inject your brand colors into Tailwind.
+  This file must be processed by a tool like PostCSS to work,
+  but for simplicity, we'll define static classes in the meantime.
+  
+  For VSCode local dev, we'll use a trick and just define the colors
+  so Tailwind's base file can use them.
+*/
+body {
+    /* Define CSS variables for your brand colors */
+    --color-brand-pink: #E91E63;
+    --color-brand-pink-dark: #C2185B; /* From your kit */
+    --color-brand-purple: #8E24AA;
+    --color-brand-purple-light: #F3E5F5; /* A light tint */
+    --color-brand-purple-dark: #6A1B9A; /* From your kit */
+}
+
+/* Static definitions for Tailwind-like classes
+  This is a workaround for not having a build step.
+*/
+.bg-brand-pink { background-color: var(--color-brand-pink); }
+.hover\:bg-brand-pink-dark:hover { background-color: var(--color-brand-pink-dark); }
+.focus\:ring-brand-pink:focus { --tw-ring-color: var(--color-brand-pink); }
+
+.text-brand-pink { color: var(--color-brand-pink); }
+
+.bg-brand-purple { background-color: var(--color-brand-purple); }
+.hover\:bg-brand-purple-dark:hover { background-color: var(--color-brand-purple-dark); }
+.focus\:ring-brand-purple:focus { --tw-ring-color: var(--color-brand-purple); }
+.focus\:border-brand-purple:focus { border-color: var(--color-brand-purple); }
+
+.text-brand-purple { color: var(--color-brand-purple); }
+.bg-brand-purple-light { background-color: var(--color-brand-purple-light); }
