@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import TaskInput from '@/components/TaskInput';
 import HourlyRateInput from '@/components/HourlyRateInput';
 import Results from '@/components/Results';
+import ReportModal from '@/components/ReportModal';
 import { Task, Results as ResultsType } from '@/types';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   ]);
   const [hourlyRate, setHourlyRate] = useState<number>(30);
   const [results, setResults] = useState<ResultsType | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const addNewTask = () => {
     setTasks([
@@ -32,6 +34,16 @@ export default function Home() {
   };
 
   const calculateResults = () => {
+    // Validate that at least one task has meaningful data
+    const validTasks = tasks.filter(task =>
+      task.name.trim() !== '' && task.time > 0
+    );
+
+    if (validTasks.length === 0) {
+      alert('Please add at least one task with a name and time before calculating.');
+      return;
+    }
+
     let totalAnnualHours = 0;
     let totalFeasibility = 0;
     let taskCount = 0;
@@ -46,11 +58,12 @@ export default function Home() {
     tasks.forEach(task => {
       const time = task.time || 0;
       const frequency = task.frequency;
-      const taskName = task.name.toLowerCase();
-      const system = task.system.toLowerCase();
+      const taskName = task.name.toLowerCase().trim();
+      const system = task.system.toLowerCase().trim();
       const fullTaskDesc = taskName + " " + system;
 
-      if (time > 0) {
+      // Only count tasks with a name and time
+      if (time > 0 && taskName !== '') {
         taskCount++;
 
         // Calculate Annual Hours
@@ -158,12 +171,17 @@ export default function Home() {
 
         <hr className="my-8 border-gray-200" />
 
-        {results && <Results results={results} />}
+        {results && <Results results={results} onRequestReport={() => setShowModal(true)} />}
       </main>
 
       <footer className="text-center mt-8 text-gray-500 text-sm">
         &copy; 2025 Empower Digital Solutions
       </footer>
+
+      {/* Report Modal */}
+      {showModal && results && (
+        <ReportModal results={results} onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 }

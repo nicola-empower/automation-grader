@@ -3,9 +3,10 @@ import { Results as ResultsType } from '@/types';
 
 interface ResultsProps {
     results: ResultsType;
+    onRequestReport: () => void;
 }
 
-export default function Results({ results }: ResultsProps) {
+export default function Results({ results, onRequestReport }: ResultsProps) {
     const currencyFormatter = new Intl.NumberFormat('en-GB', {
         style: 'currency',
         currency: 'GBP',
@@ -57,7 +58,10 @@ export default function Results({ results }: ResultsProps) {
                 <p className="text-lg text-gray-700">
                     Ready to reclaim this time and reinvest it in growing your business?
                 </p>
-                <button className="mt-4 px-8 py-3 text-lg rounded-md font-semibold shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-pink text-white hover:bg-brand-pink-dark focus:ring-brand-pink">
+                <button
+                    onClick={onRequestReport}
+                    className="mt-4 px-8 py-3 text-lg rounded-md font-semibold shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-pink text-white hover:bg-brand-pink-dark focus:ring-brand-pink"
+                >
                     Get Your Full Automation Report
                 </button>
             </div>
