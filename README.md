@@ -1,3 +1,9 @@
+
+<img width="1648" height="1524" alt="image" src="https://github.com/user-attachments/assets/0d8e7eff-7d0e-4f55-a5ef-f78477ae7f7e" />
+
+
+this is a demo, the live version can be found here: [Empower Automation](https://empowerautomation.co.uk)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
